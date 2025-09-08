@@ -1,0 +1,9 @@
+﻿@model StudentSubjectMd.Models.Subject
+<div class="row mb-2 rc">
+    <div class="col-9">
+        @Html.DropDownListFor(x=>x.SubjectId, ViewBag.subject as SelectList ,"--Select Subject--",new {@class="form-select"} )
+    </div>
+    <div class="col-3">
+       @Html.ActionLink("x","",null, new {@class="btn btn-danger btnRemove"})
+    </div>
+</div>

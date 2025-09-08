@@ -1,0 +1,69 @@
+﻿@model IEnumerable<StudentSubjectMd.Models.Student>
+@{
+    ViewBag.Title = "Index";
+}
+<h2 class="display-4">Student List</h2>
+<div class="d-flex justify-content-end mb-2">
+    @Html.ActionLink("Add New Student","Create","",htmlAttributes:new {@class="btn btn-primary btnCreate"})
+</div>
+<div>
+    @foreach (var s in Model)
+    {
+        <div class="card">
+            <div class="row">
+                <div class="card-header col-5 ms-3 p:2">
+                    <h2>Student Information</h2>
+                    <img src="@s.Image" width="150" height="150" style="border-radius:8px; align-items:center" /> <br />
+                    <label><b>Student Name:&nbsp;</b>@Html.DisplayFor(st => s.StudentName)</label><br />
+                    <label><b>Student Roll:&nbsp;</b>@Html.DisplayFor(st => s.StudentRoll)</label><br />
+                    <label><b>Group:&nbsp;</b>@Html.DisplayFor(st => s.Group)</label><br />
+                    <label><b>Class:&nbsp;</b>@Html.DisplayFor(st => s.StudentClass)</label><br />
+                    <label><b>Student Phone:&nbsp;</b>@Html.DisplayFor(st => s.StudentPhone)</label> <br />
+                    <label><b>Guardian Phone:&nbsp;</b>@Html.DisplayFor(st => s.GuardianPhone)</label><br />
+                    <label><b>Student Address:&nbsp;</b>@Html.DisplayFor(st => s.StudentAddress)</label> <br />
+                    <label><b>Admission Fee:&nbsp;</b>@Html.DisplayFor(st => s.AdmissionFee)</label> <br />
+                    <label><b>Admission Date:&nbsp;</b>@Html.DisplayFor(st => s.AdmissionDate)</label> <br />
+                    <label><b>Regular:&nbsp;</b>@Html.DisplayFor(st => s.IsRegural)</label>
+                </div>
+          
+                <div class="col-5 m-1">
+                    <h2>Subject List</h2>
+                    <table class="table table-striped">
+                        <thead class="table-primary">
+                            <tr>
+                                <th>Subject Id</th>
+                                <th>Subject Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in s.StudentDetails)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(st => item.Subject.SubjectId)</td>
+                                    <td>@Html.DisplayFor(st => item.Subject.SubjectName)</td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end m-2">
+                <button class="btn btn-warning btnEdit btn-sm" type="button" data-id="@s.StudentId">Edit</button>&nbsp;
+                @Html.ActionLink("Delete", "Delete", "Students", new { @id = s.StudentId }, new { @class = "btn btn-danger btn-sm" })
+            </div>          
+        </div>
+    }
+</div>
+<section class="mcon" style="display:none">
+    <div class="mbody p-5">
+        <div class="macon">
+
+        </div>
+        <hr />
+        <div class="modal-footer">
+            <button class="btn btn-danger btnClose">Close</button>
+        </div>
+    </div>
+</section>
+
